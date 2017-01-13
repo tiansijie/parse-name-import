@@ -1,0 +1,32 @@
+{
+  "name": "parse-name-import",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tiansijie/parse-name-import.git"
+  },
+  "keywords": [
+    "parse",
+    "import",
+    "es6",
+    "tree-shake",
+    "name",
+    "import",
+    "import",
+    "module"
+  ],
+  "author": "tiansijie",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tiansijie/parse-name-import/issues"
+  },
+  "homepage": "https://github.com/tiansijie/parse-name-import#readme"
+}

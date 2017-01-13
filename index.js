@@ -3,6 +3,7 @@ var fs = require('fs');
 let path = process.argv[2];
 const target = process.argv[3];
 const packageName = process.argv[4];
+const importStatement = process.argv[5];
 
 if (path[path.length - 1] !== "/") {
 	path = path + "/"
@@ -57,6 +58,13 @@ function parseTarget(path) {
 			}
 			rMap[result[rIndex]] = true;
 			rIndex++;
+		}
+
+		if (importStatement && importStatement.length) {
+			const importIndex = copy.indexOf(importStatement);
+			if (importIndex !== -1) {
+				copy = copy.substring(0, importIndex) + copy.substring(importIndex + importStatement.length);
+			}
 		}
 
 		const appendData = Object.keys(rMap).join(",\n");
