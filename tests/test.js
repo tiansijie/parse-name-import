@@ -4,4 +4,3 @@ THREE.Mesh()
 new THREE.Material,
 THREE.DOUBLE_SIDE;
 THREE.WebGLRenderer
-THREE.JIJOL
