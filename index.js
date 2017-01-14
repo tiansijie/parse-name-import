@@ -50,6 +50,9 @@ function parseTarget(path) {
 				|| copy[i] === " "
 				|| copy[i] === ","
 				|| copy[i] === ")"
+				|| copy[i] === "}"
+				|| copy[i] === "{"
+				|| copy[i] === "."
 				|| copy[i] === "\n"
 			) {
 					break;
