@@ -1,14 +1,45 @@
 var fs = require('fs');
+var acorn = require("acorn");
 
 let path = process.argv[2];
-const target = process.argv[3];
-const packageName = process.argv[4];
-const importStatement = process.argv[5];
+const importStatement = process.argv[3];
+const parsedImport = acorn.parse(importStatement, {sourceType: "module"});
 
-if (path[path.length - 1] !== "/") {
-	path = path + "/"
+let packageName = "";
+let target = "";
+if (parsedImport.body[0].type === "ImportDeclaration") {
+	const importBody = parsedImport.body[0];
+	packageName = importBody.source.value;
+	target = `${importBody.specifiers[0].local.name}.`;
 }
-readAllFiles(path);
+else if (parsedImport.body[0].type === "VariableDeclaration") {
+	const varBody = parsedImport.body[0];
+	if (varBody.declarations.length) {
+		const decl = varBody.declarations[0];
+		target = `${decl.id.name}.`;
+		packageName = decl.init.arguments.length && decl.init.arguments[0].value;
+	}
+}
+else {
+	console.log("need to provide correct import statement");
+	process.exit(1);
+}
+
+if (target === "" || packageName === "") {
+	console.log("need to provide correct import statement");
+	process.exit(1);
+}
+
+path = path.trim();
+if (path.substring(path.length - 3, path.length) === ".js") {
+	parseTarget(path);
+}
+else {
+	if (path[path.length - 1] !== "/") {
+		path = path + "/"
+	}
+	readAllFiles(path);
+}
 
 function readAllFiles(path) {
 	fs.readdir(path, "utf8", (err, files) => {

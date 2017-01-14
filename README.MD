@@ -20,14 +20,12 @@ const myMesh = new Mesh();
 
 ### Usage
 ```
-node index.js [path] [target] [packageName] [replacedStatement]
+node index.js [path] [replacedStatement]
 ```
-* [path]: the path the your folder
-* [target]: the target variable you want to delete
-* [packageName]: the name of the package you use when you import
+* [path]: the path the your folder or your file
 * [replacedStatement]: the import statement you want to replace
 
 To transform example above, all you need is do the following.
 ```
-node index.js /src/ THREE. three `import THREE from "three"`
+node index.js /src/ 'import THREE from "three";'
 ```
